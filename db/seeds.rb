@@ -29,11 +29,29 @@ puts "$" * 100
   sleep(0.5)
 end
 
+puts "$" * 100
+puts
+puts "#{User.count} users created in the database"
+puts
+puts "$" * 100
+
 2.times do
   Event.create(start_date: DateTime.now + rand(10..30), duration: rand(1..4) * 30, title: Faker::Movie.quote, description: Faker::Lorem.sentence(word_count: 50 + rand(1..100)), price: rand(1..1000), location: Faker::Address.unique.city, event_admin_id: User.all.sample.id)
 end
+
+puts "$" * 100
+puts
+puts "#{Event.count} events created in the database"
+puts
+puts "$" * 100
 
 3.times do
   Attendance.create(user: User.all.sample, event: Event.all.sample)
   sleep(0.5)
 end
+
+puts "$" * 100
+puts
+puts "#{Attendance.count} attendances created in the database"
+puts
+puts "$" * 100
