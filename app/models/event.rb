@@ -1,12 +1,10 @@
 class Event < ApplicationRecord
   validates :start_date, 
     presence: true,
-    if: -> {self.start_date > Datetime.now, message: "shouldn't start in the past!"}
   
   validates :duration,
     presence: true,
-    if: -> {self.duration % 5 == 0, message: 'should be a multiple of 5.'},
-    if: -> {self.duration > 0, message: 'should be superior to zero.'}
+    numericality: { greater_than: 0 }
 
   validates :title,
     presence: true,
@@ -21,6 +19,17 @@ class Event < ApplicationRecord
     length: { in: 1..1000, message: ": The price must be between 1 and 1000"}
 
   validates :location, presence: true
+
+  validate :start_before_now?,
+    :multiple_of_five?,
   
   belongs_to :event_admin, class_name: "User"
+ 
+  def start_before_now?
+    errors.add(:expiration_date, "can't be in the past.") if start_date < Date.today
+  end
+ 
+  def multiple_of_five?
+    errors.add(:discount, "should be a multiple of 5.") unless duration % 5 == 0
+  end
 end
