@@ -14,9 +14,9 @@ class Event < ApplicationRecord
     presence: true,
     length: { in: 20..1000, message: ": The number of characters must be between 20 and 1000"}
 
-  validates :description,
+  validates :price,
     presence: true,
-    length: { in: 1..1000, message: ": The price must be between 1 and 1000"}
+    numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 1000, only_integer: true }
 
   validates :location, presence: true
 
