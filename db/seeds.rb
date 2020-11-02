@@ -7,6 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-5.times do |i|
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "prénom.nom#{i+1}@yopmail.com")
+3.times do
+  if User.count > 1
+    User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "prénom.nom#{User.last.id}@yopmail.com")
+  else
+    User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: "prénom.nom#{1}@yopmail.com")
+  end
 end

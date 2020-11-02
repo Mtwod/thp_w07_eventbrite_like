@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   validates :start_date, 
-    presence: true,
+    presence: true
   
   validates :duration,
     presence: true,
@@ -21,7 +21,7 @@ class Event < ApplicationRecord
   validates :location, presence: true
 
   validate :start_before_now?,
-    :multiple_of_five?,
+    :multiple_of_five?
   
   belongs_to :event_admin, class_name: "User"
  
