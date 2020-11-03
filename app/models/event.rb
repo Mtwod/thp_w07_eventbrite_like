@@ -28,11 +28,15 @@ class Event < ApplicationRecord
   has_many :users, through: :attendances
  
   def start_before_now?
-    errors.add(:expiration_date, "ne peut être dans le passé") if start_date < Date.today
+    unless start_date == nil || start_date > DateTime.now
+      errors.add(:expiration_date, "ne peut être dans le passé")
+    end
   end
  
   def multiple_of_five?
-    errors.add(:discount, "doit être un multiple de 5.") unless duration % 5 == 0
+    unless duration == nil || duration % 5 == 0
+      errors.add(:discount, "doit être un multiple de 5.") unless duration % 5 == 0
+    end
   end
 
   def end_date

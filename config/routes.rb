@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # to redirect user after sign in to a specific method
+  get '/user' => "events#index", :as => :user_root
+  
   devise_for :users
   root 'events#index'
   resources :users

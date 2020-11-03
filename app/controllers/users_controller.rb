@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     unless is_author?(@user)
-      flash[:danger] = "You are not the owner of this profile !"
+      flash[:danger] = "Vous n'êtes pas le propriétaire de ce profil d'utilisateur !"
       redirect_back(fallback_location: root_path)
     end
     @admin_events = current_user.admin_events
