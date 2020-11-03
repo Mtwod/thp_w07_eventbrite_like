@@ -4,10 +4,43 @@
   <div class="card">
     <h5 class="card-header"><%= @event.title %></h5>
     <div class="card-body">
-      <p class="card-title"><b>Lieu :</b> <%= @event.location %></p>
-      <p class="card-title"><b>Date de début :</b> <%= @event.start_date %></p>
-      <p class="card-title"><b>Date de fin :</b> <%= @event.end_date %></p>
-      <p class="card-title"><b>Nombre d'inscrit :</b> <%= @event.users.count - 1 %></p>
+      
+      
+      
+      
+
+      <div class="row">
+        <div class="col-sm col-lg-3">
+          <p class="card-title"><b>Lieu :</b></p>
+        </div>
+        <div class="col-sm col-lg-3">
+          <%= @event.location %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm col-lg-3">
+          <p class="card-title"><b>Date de début :</b> </p>
+        </div>
+        <div class="col-sm col-lg-3">
+          <%= @event.start_date %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm col-lg-3">
+          <p class="card-title"><b>Date de fin :</b> </p>
+        </div>
+        <div class="col-sm col-lg-3">
+          <%= @event.end_date %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm col-lg-3">
+          <p class="card-title"><b>Nombre d'inscrit :</b> </p>
+        </div>
+        <div class="col-sm col-lg-3">
+          <%= @event.users.count - 1 %>
+        </div>
+      </div>
 
       <p class="card-text"><%= @event.description%></p>
       <p class="text-muted"><b>Crée par : </b><%= @event.event_admin.email %></p>
