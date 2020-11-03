@@ -24,6 +24,8 @@ class Event < ApplicationRecord
     :multiple_of_five?
   
   belongs_to :event_admin, class_name: "User"
+  has_many :attendances
+  has_many :users, through: :attendances
  
   def start_before_now?
     errors.add(:expiration_date, "ne peut être dans le passé") if start_date < Date.today
@@ -31,5 +33,9 @@ class Event < ApplicationRecord
  
   def multiple_of_five?
     errors.add(:discount, "doit être un multiple de 5.") unless duration % 5 == 0
+  end
+
+  def end_date
+    self.start_date + (self.duration * 60)
   end
 end

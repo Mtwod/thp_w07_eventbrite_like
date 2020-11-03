@@ -1,1 +1,19 @@
-Ici le show
+<div class="container">
+  <h2 class="my-5 text-center" >Évènement n°<%= @event.id %> :</h2>
+
+  <div class="card">
+    <h5 class="card-header"><%= @event.title %></h5>
+    <div class="card-body">
+      <p class="card-title"><b>Lieu :</b> <%= @event.location %></p>
+      <p class="card-title"><b>Date de début :</b> <%= @event.start_date %></p>
+      <p class="card-title"><b>Date de fin :</b> <%= @event.end_date %></p>
+      <p class="card-title"><b>Nombre d'inscrit :</b> <%= @event.users.count - 1 %></p>
+
+      <p class="card-text"><%= @event.description%></p>
+      <p class="text-muted"><b>Crée par : </b><%= @event.event_admin.email %></p>
+      
+    </div>
+  </div>
+  <br>
+    <%= link_to "Accueil", root_path, class: "d-inline p-2 btn btn-primary m-2" %>
+</div>
