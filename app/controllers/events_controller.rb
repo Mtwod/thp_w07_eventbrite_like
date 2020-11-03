@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new
+    @event = Event.new(event_params)
     @event.event_admin = current_user
 
     if @event.save
@@ -17,5 +17,12 @@ class EventsController < ApplicationController
     else
       render new_event_path
     end
+  end
+
+  def show
+  end
+
+  def event_params
+    params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location)
   end
 end
