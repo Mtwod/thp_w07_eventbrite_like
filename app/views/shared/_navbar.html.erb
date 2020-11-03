@@ -9,25 +9,13 @@
       <li class="nav-item">
       <%= link_to "Créer un event", new_event_path, class: "nav-link" %>
       </li>
-      <%
-=begin%>
- <li class="nav-item">
-        <%= link_to "Contact us", #contact_path, 
-        class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "New gossip", #new_gossip_path, 
-        class: "nav-link" %>
-      </li> 
-<%
-=end%>
     </ul>
 
     <% if user_signed_in? %>
 
       <div class="nav-item dropdown">
         <a class="nav-link btn btn-warning dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <b><%= current_user.first_name %></b>
+          connecté(e) : <b><%= current_user.first_name %></b>
         </a>
         
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
