@@ -8,11 +8,11 @@ class Event < ApplicationRecord
 
   validates :title,
     presence: true,
-    length: { in: 5..140, message: ": The number of characters must be between 5 and 140" }
+    length: { in: 5..140, message: ": Le nombre de caractère doit être compris entre 5 et 140" }
     
   validates :description,
     presence: true,
-    length: { in: 20..1000, message: ": The number of characters must be between 20 and 1000"}
+    length: { in: 20..1000, message: ": Le nombre de caractère doit être compris entre 20 et 1000"}
 
   validates :price,
     presence: true,
@@ -26,10 +26,10 @@ class Event < ApplicationRecord
   belongs_to :event_admin, class_name: "User"
  
   def start_before_now?
-    errors.add(:expiration_date, "can't be in the past.") if start_date < Date.today
+    errors.add(:expiration_date, "ne peut être dans le passé") if start_date < Date.today
   end
  
   def multiple_of_five?
-    errors.add(:discount, "should be a multiple of 5.") unless duration % 5 == 0
+    errors.add(:discount, "doit être un multiple de 5.") unless duration % 5 == 0
   end
 end

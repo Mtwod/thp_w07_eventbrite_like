@@ -1,0 +1,53 @@
+<div class="container">
+
+  <% if @event.errors.any? %>
+    <div class="text-center alert alert-danger" role="alert">
+      <p>Nous n'avons pu créer d'évènement pour la/les raison(s) suivante(s) :</p>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1 class="my-5 text-center">🤭 Voici le formulaire pour créer un nouvel évènement ! 🤭</h1>
+
+  <%= form_for @event do |f| %>
+
+    <div class="form-group">
+      <label>Titre</label>
+      <%= f.text_field :title, autofocus: true, placeholder: "Entre 5 et 140 caractères", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Date de début</label>
+      <%= f.text_field :start_date, autocomplete: "YYYY-MM-DD HH:MM:SS", placeholder: "AAAA-MM-JJ HH:MM:SS", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Durée</label>
+      <%= f.text_field :duration, placeholder: "Tapez un multiple de 5", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <%= f.text_area :description, placeholder: "La description de l'évènement ici", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Prix</label>
+      <%= f.text_field :price, placeholder: "Veuillez indiquer un prix compris entre 1 et 1000", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <label>Lieu</label>
+      <%= f.text_field :location, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-warning">Créer l'évènement</button>
+    </div>
+
+  <% end %>
+</div>
