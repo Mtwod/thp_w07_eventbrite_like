@@ -1,3 +1,15 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= link_to "Édier mon profil", edit_user_registration_path, class: "nav-link btn btn-outline-info mx-2 my-2" %>
+<div class="container">
+  <h2 class="my-5 text-center">Votre profile</h2>
+
+  <div class="card">
+    <h5 class="card-header"><%= "#{@user.first_name} #{@user.last_name}, #{@user.age} years old, from #{@user.city.name}" %></h5>
+    <div class="card-body">
+      <h5 class="card-title"><i class="fas fa-at"></i> <%= @user.email %></h5>
+      <p class="card-text"><%= @user.description %></p>
+      <p class="text-muted"><b>This user was created the : </b><%= @user.created_at %></p>
+      <%= link_to "Author's city page", city_path(@user.city.id), class: "d-inline p-2 bg-default rounded" %>
+
+    </div>
+  </div>
+  <%= link_to "Édier mon profil", edit_user_registration_path, class: "nav-link btn btn-outline-info mx-2 my-2" %>
+</div>

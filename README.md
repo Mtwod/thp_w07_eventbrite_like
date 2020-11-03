@@ -2,6 +2,8 @@
 
 The project of the week is to develop a website, with most of the functionalities of the previous gossip project. We will implement more as days goes during this week.
 
+Here the link to my [EventBrite like website](https://mw-eventbrite-like.herokuapp.com/) hosted on Heroku.
+
 ## Description
 
 This is the start of a website similar to eventbrite, in its functionalities, such as :
@@ -10,8 +12,9 @@ This is the start of a website similar to eventbrite, in its functionalities, su
 * Creating an event
 * Subscribing to an event
 * Sending email when user creates an account and create / subscribe to an event through SendGrid
+* All authentication managed by devise
 
-Tomorrow, we will add the Ruby gem 'devise' to manage the account features.
+Tomorrow, we will see services and APIs.
 
 ## Installation
 
@@ -42,6 +45,17 @@ Go to the app directory, and change the default sender email in 'app/mailer/user
 default from: 'exemple@yopmail.com'
 ```
 
+Then, access the file 'config/initializers/devise.rb' and change the email :
+
+So
+```ruby
+  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+```
+becomes
+```ruby
+  config.mailer_sender = 'example@yopmail.com'
+```
+
 And you are ready to go !
 
 ## Usage
@@ -51,3 +65,5 @@ If you run the seeds file, you will create several users, events and attendances
 ## Author
 
 Maxime WONG
+
+[EventBrite like website](https://mw-eventbrite-like.herokuapp.com/)
