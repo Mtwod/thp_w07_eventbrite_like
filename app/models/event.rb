@@ -29,7 +29,7 @@ class Event < ApplicationRecord
  
   def start_before_now?
     unless start_date == nil || start_date > DateTime.now
-      errors.add(:expiration_date, "ne peut être dans le passé")
+      errors.add(:start_date, "ne peut être dans le passé")
     end
   end
  

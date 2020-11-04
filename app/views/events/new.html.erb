@@ -22,7 +22,8 @@
 
     <div class="form-group">
       <label>Date et heure de début <small class="text-muted">(aaaa-mm-jj hh:mm:ss)</small></label>
-      <%= f.text_field :start_date, autocomplete: "YYYY-MM-DD HH:MM:SS", placeholder: "AAAA-MM-JJ HH:MM:SS", class: "form-control" %>
+      <br>
+      <%= f.datetime_select :start_date, autocomplete: "YYYY-MM-DD HH:MM:SS", placeholder: "AAAA-MM-JJ HH:MM:SS", class: "form-control" %>
     </div>
 
     <div class="form-group">
