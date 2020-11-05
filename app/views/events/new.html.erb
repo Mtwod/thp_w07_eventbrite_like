@@ -51,7 +51,7 @@
     <div class="form-group">
       <label>Ajouter une photo (obligatoire)</label>
       <br>
-      <%= f.file_field :event_picture %>
+      <%= f.file_field :event_picture, direct_upload: true, accept: "image/png,image/gif,image/jpeg" %>
     </div>
     <br><br>
 
