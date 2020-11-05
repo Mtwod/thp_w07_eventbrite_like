@@ -55,7 +55,7 @@
     <%= link_to "Accueil", root_path, class: "d-inline p-2 btn btn-primary m-2" %>
     
     <% if @event.event_admin == current_user %>
-      <%= link_to "Éditer l'évènement", edit_event_path(@event), class: "d-inline p-2 btn btn-warning m-2" %>
+      <%= link_to "Mon espace d'évènement", event_attendances_path(@event), class: "d-inline p-2 btn btn-warning m-2" %>
     <% elsif @event.users.select{ |user| user == current_user }.count == 0 %>
       <%= link_to "S'inscrire à l'évènement", new_event_attendance_path(@event), class: "d-inline p-2 btn btn-info m-2" %>
     <% else %>
