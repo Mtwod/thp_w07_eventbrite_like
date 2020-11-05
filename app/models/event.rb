@@ -21,11 +21,13 @@ class Event < ApplicationRecord
   validates :location, presence: true
 
   validate :start_before_now?,
-    :multiple_of_five?
+    :multiple_of_five?,
+    :has_picture?
   
   belongs_to :event_admin, class_name: "User"
   has_many :attendances
   has_many :users, through: :attendances
+  has_one_attached :event_picture
  
   def start_before_now?
     unless start_date == nil || start_date > DateTime.now
@@ -35,7 +37,7 @@ class Event < ApplicationRecord
  
   def multiple_of_five?
     unless duration == nil || duration % 5 == 0
-      errors.add(:discount, "doit être un multiple de 5.") unless duration % 5 == 0
+      errors.add(:discount, "doit être un multiple de 5.")
     end
   end
 
@@ -46,5 +48,11 @@ class Event < ApplicationRecord
   # To use later !!
   def is_free?
     return self.price == 0
+  end
+
+  def has_picture?
+    unless self.event_picture.attached?
+      errors.add(:event_picture, "Vous devez ajouter une photo !")
+    end
   end
 end

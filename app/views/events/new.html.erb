@@ -13,7 +13,7 @@
 
   <h1 class="my-5 text-center">🤭 Voici le formulaire pour créer un nouvel évènement ! 🤭</h1>
 
-  <%= form_for @event do |f| %>
+  <%= form_for @event, multipart: true do |f| %>
 
     <div class="form-group">
       <label>Titre</label>
@@ -45,6 +45,15 @@
       <label>Lieu</label>
       <%= f.text_field :location, class: "form-control" %>
     </div>
+
+    <br>
+
+    <div class="form-group">
+      <label>Ajouter une photo (obligatoire)</label>
+      <br>
+      <%= f.file_field :event_picture %>
+    </div>
+    <br><br>
 
     <div class="form-group">
       <button type="submit" class="btn btn-warning">Créer l'évènement</button>

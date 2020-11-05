@@ -4,6 +4,14 @@
   <div class="card">
     <h5 class="card-header"><%= @event.title %></h5>
     <div class="card-body">
+
+      <div class="row">
+        <%if @event.event_picture.attached? %>
+          <%= image_tag @event.event_picture, alt: 'event picture' %>
+        <%else%>
+          <p>=== Il n'y a pas encore de photo liée à cet évènement ===</p>
+        <%end%>
+      </div>
       
       <div class="row">
         <div class="col-sm col-lg-3">
