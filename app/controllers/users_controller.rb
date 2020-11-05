@@ -1,30 +1,20 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   before_action :find_user
+  before_action :redirect_not_author
   
   def show
-    unless is_author?(@user)
-      flash[:danger] = "Vous n'êtes pas le propriétaire de ce compte !"
-      redirect_back(fallback_location: root_path)
-    end
     @admin_events = current_user.admin_events
   end
 
   def edit
-    unless is_author?(@user)
-      redirect_to current_user, danger: "Vous n'éditerez pas ! Car vous n'êtes pas le propriétaire de ce compte !"
-    end
   end
 
   def update
-    if is_author?(@user)
-      if @user.update(user_params)
-        redirect_to @user, success: "Vos informations ont bien été mises à jour !"
-      else
-        render :edit
-      end
+    if @user.update(user_params)
+      redirect_to @user, success: "Vos informations ont bien été mises à jour !"
     else
-      redirect_to user_path(params[:id]), danger: "Voouus ne mettrez à jour PAAS !! Car vous n'êtes pas le propriétaire de ce compte !"
+      render :edit
     end
   end
 
@@ -37,4 +27,12 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
+
+  def redirect_not_author
+    unless is_author?(@user)
+      flash[:danger] = "Vous n'êtes pas le propriétaire de ce compte !!"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
 end

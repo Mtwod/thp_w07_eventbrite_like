@@ -1,5 +1,8 @@
 class AttendancesController < ApplicationController
+  include AttendancesHelper
+
   before_action :authenticate_user!
+  before_action :find_event
   before_action :amounts
 
   def new
@@ -12,7 +15,6 @@ class AttendancesController < ApplicationController
     event_admin_restrictions
     begin
       # Amount in cents
-      # @stripe_amount = 700
 
       customer = Stripe::Customer.create({
         email: params[:stripeEmail],
@@ -23,7 +25,7 @@ class AttendancesController < ApplicationController
         customer: customer.id,
         amount: @stripe_amount,
         description: 'Rails Stripe customer',
-        currency: 'eur',
+        currency: 'EUR'
       })
 
     rescue Stripe::CardError => e
@@ -31,7 +33,7 @@ class AttendancesController < ApplicationController
       redirect_to new_event_attendance_path(@event)
     end
 
-    Attendance.create(user: current_user, event: @event, stripe_customer_id: customer.id)
+    # Attendance.create(user: current_user, event: @event, stripe_customer_id: customer.id) if charge.paid
 
   end
 
@@ -39,33 +41,4 @@ class AttendancesController < ApplicationController
     is_event_admin?
   end
 
-  private
-
-  def amounts
-    @event = Event.find(params[:event_id])
-    @amount = @event.price
-    @stripe_amount = @amount * 100
-  end
-
-  def can_subscribe?
-    if @event.users.select{ |user| user == current_user }.count == 0
-      return true
-    else
-      redirect_to event_path(@event), warning: "Vous êtes déjà inscrit !"
-    end
-  end
-
-  def is_event_admin?
-    if @event.event_admin == current_user
-      return true
-    else
-      redirect_to event_path(@event), danger: "Vous n'êtes pas le créateur de cette évènement !"
-    end
-  end
-
-  def event_admin_restrictions
-    if @event.event_admin == current_user
-      redirect_to event_path(@event), danger: "Vous ne pouvez effectuer cette actions en tant que créateur de cette évènement !"
-    end
-  end
 end
