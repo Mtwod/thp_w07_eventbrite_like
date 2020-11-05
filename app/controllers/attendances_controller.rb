@@ -33,7 +33,7 @@ class AttendancesController < ApplicationController
       redirect_to new_event_attendance_path(@event)
     end
 
-    # Attendance.create(user: current_user, event: @event, stripe_customer_id: customer.id) if charge.paid
+    Attendance.create(user: current_user, event: @event, stripe_customer_id: customer.id) if charge.paid
 
   end
 

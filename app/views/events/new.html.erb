@@ -33,7 +33,7 @@
 
     <div class="form-group">
       <label>Description</label>
-      <%= f.text_area :description, placeholder: "La description de l'évènement ici", class: "form-control" %>
+      <%= f.text_area :description, placeholder: "Nombre de caractères entre 20 et 1000", class: "form-control" %>
     </div>
 
     <div class="form-group">
@@ -53,6 +53,7 @@
   <% end %>
   <br><br>
   <%= link_to  "Accueil", root_path, class: "btn btn-info" %>
+  <br>
   <br>
   <%= link_to  "Retour", :back, class: "btn btn-info" %>
 

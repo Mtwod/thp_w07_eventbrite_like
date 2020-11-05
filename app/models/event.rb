@@ -42,4 +42,9 @@ class Event < ApplicationRecord
   def end_date
     self.start_date + (self.duration * 60)
   end
+
+  # To use later !!
+  def is_free?
+    return self.price == 0
+  end
 end

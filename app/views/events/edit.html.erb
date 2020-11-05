@@ -1,0 +1,63 @@
+  <% if @event.errors.any? %>
+    <div class="text-center alert alert-danger" role="alert">
+      <p>L'évènement n'a pu être crée pour la(les) raison(s) suivante(s)</p>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="container w-50">
+
+  <h2 class="my-5 text-center" > Modification de l'évènement ✍️</h2>
+
+
+
+    <%= form_for @event do |f| %>
+
+      <div class="form-group">
+        <label>Titre</label>
+        <%= f.text_field :title, autofocus: true, placeholder: "Entre 5 et 140 caractères", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Date et heure de début <small class="text-muted">(aaaa-mm-jj hh:mm:ss)</small></label>
+        <br>
+        <%= f.datetime_select :start_date, autocomplete: "YYYY-MM-DD HH:MM:SS", placeholder: "AAAA-MM-JJ HH:MM:SS", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Durée (en minutes)</label>
+        <%= f.text_field :duration, placeholder: "Tapez un multiple de 5", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <%= f.text_area :description, placeholder: "Nombre de caractères entre 20 et 1000", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Prix</label>
+        <%= f.text_field :price, placeholder: "Veuillez indiquer un prix compris entre 1 et 1000", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Lieu</label>
+        <%= f.text_field :location, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-warning">Modifier l'évènement</button>
+      </div>
+
+    <% end %>
+  <br>
+  <%= link_to "Supprimer l'évènement", @event, class: "btn btn-outline-danger m-2", method: "DELETE", data: {confirm: "Êtes-vous sûr(e) ? :'("} %>
+  <br> <br>
+  <%= link_to  "Revenir à la page évènement", @event, class: "btn btn-info" %>
+  
+  
+</div>
