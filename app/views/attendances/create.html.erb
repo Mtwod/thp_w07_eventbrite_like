@@ -1,1 +1,6 @@
-<h2>Thanks, you paid <strong><%= @amount %> €</strong>!</h2>
+<div class="container">
+  <h2>Votre paiement de <strong><%= @amount %> €</strong> a bien été reçu et validé !</h2>
+  <p>Nous espérons que vous passerez un excellent moment !!</p>
+
+  <%= link_to  "Retour", :back, class: "btn btn-info" %>
+</div>

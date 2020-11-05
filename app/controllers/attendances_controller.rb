@@ -1,13 +1,15 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user!
   before_action :amounts
-  before_action :is_event_admin?
-  before_action :can_subscribe?
 
   def new
+    can_subscribe?
+    event_admin_restrictions
   end
   
   def create
+    can_subscribe?
+    event_admin_restrictions
     begin
       # Amount in cents
       # @stripe_amount = 700
@@ -34,6 +36,7 @@ class AttendancesController < ApplicationController
   end
 
   def index
+    is_event_admin?
   end
 
   private
@@ -57,6 +60,12 @@ class AttendancesController < ApplicationController
       return true
     else
       redirect_to event_path(@event), danger: "Vous n'êtes pas le créateur de cette évènement !"
+    end
+  end
+
+  def event_admin_restrictions
+    if @event.event_admin == current_user
+      redirect_to event_path(@event), danger: "Vous ne pouvez effectuer cette actions en tant que créateur de cette évènement !"
     end
   end
 end
