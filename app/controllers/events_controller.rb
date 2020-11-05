@@ -53,8 +53,7 @@ class EventsController < ApplicationController
   def is_event_admin?
     @event = Event.find(params[:id])
     unless is_author?(@event.event_admin)
-      flash[:danger] = "Vous n'êtes pas le créateur de cet évènement !!"
-      redirect_back(fallback_location: root_path)
+      redirect_to @event, danger: "Vous n'êtes pas le créateur de cet évènement !!"
     end
   end
 end
