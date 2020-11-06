@@ -1,6 +1,14 @@
 <div class="container">
   <h2 class="my-5 text-center">Votre profil</h2>
 
+  <h4>Votre avatar</h4>
+  <%if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar, alt: 'user avatar', class: "border rounded-lg", style:"width: 200px;" %>
+  <% else %>
+    <p>Pas de photo !</p>
+  <% end %>
+  <hr>
+
   <h4>Votre nom</h4>
   <p><%= current_user.first_name %></p>
   <hr>

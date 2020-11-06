@@ -18,10 +18,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    redirect_to root_path, success: "Votre compte a été supprimé avec succès."
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :description)
+    params.require(:user).permit(:first_name, :last_name, :description, :avatar)
   end
 
   def find_user
@@ -34,5 +39,4 @@ class UsersController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
 end
