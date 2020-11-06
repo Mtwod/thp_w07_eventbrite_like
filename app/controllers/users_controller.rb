@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   
   def show
     @admin_events = current_user.admin_events
+
+    
   end
 
   def edit

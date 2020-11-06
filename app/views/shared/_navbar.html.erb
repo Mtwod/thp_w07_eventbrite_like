@@ -13,6 +13,9 @@
 
     <% if user_signed_in? %>
 
+      <div class="nav-item">
+        <p class="btn btn-outline-primary disabled my-auto mr-4"><b>Admin ✔️ </b></p>
+      </div>
       <div class="nav-item dropdown">
         <a class="nav-link btn btn-warning dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           connecté(e) : <b><%= current_user.first_name %></b>
