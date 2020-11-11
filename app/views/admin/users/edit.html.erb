@@ -12,24 +12,24 @@
 
 <div class="container w-50">
 
-  <h2 class="my-5 text-center" > Mettez à jour vos infos personnelles ! ✍️</h2>
+  <h2 class="my-5 text-center" > Mettez à jour ses infos personnelles ! ✍️</h2>
 
 
 
-  <%= form_for @user do |f| %>
+  <%= form_for @user, url: admin_user_path(@user) do |f| %>
 
     <div class="form-group">
-      <label>Votre prénom</label>
+      <label>Son prénom</label>
       <%= f.text_field :first_name, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <label>Votre nom</label>
+      <label>Son nom</label>
       <%= f.text_field :last_name, class: "form-control" %>
     </div>
 
     <div class="form-group">
-      <label>Votre description</label>
+      <label>Sa description</label>
       <%= f.text_area :description, class: "form-control" %>
     </div>
 
@@ -49,10 +49,10 @@
 
   <% end %>
 
-  <%= link_to "Supprimer mon compte", @user, class: "btn btn-outline-danger m-2", method: "DELETE", data: {confirm: "Êtes-vous sûr(e) ? :'("} %>
+  <%= link_to "Supprimer son compte", admin_user_path(@user), class: "btn btn-outline-danger m-2", method: "DELETE", data: {confirm: "Êtes-vous sûr(e) ? :'("} %>
   <br> <br>
 
-  <%= link_to  "Revenir à mon profil", @user, class: "btn btn-info" %>
+  <%= link_to  "Revenir à son profil", admin_user_path(@user), class: "btn btn-info" %>
   
   
 </div>

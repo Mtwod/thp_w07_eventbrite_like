@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_142401) do
+ActiveRecord::Schema.define(version: 2020_11_06_163028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_142401) do
     t.bigint "event_admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "validated"
     t.index ["event_admin_id"], name: "index_events_on_event_admin_id"
   end
 

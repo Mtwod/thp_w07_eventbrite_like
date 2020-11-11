@@ -10,7 +10,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, success: "Les informations de l'utilisateur ID:#{@user.id} ont bien été mises à jour !"
+      redirect_to admin_user_path(@user), success: "Les informations de l'utilisateur ID:#{@user.id} ont bien été mises à jour !"
     else
       render :edit
     end
