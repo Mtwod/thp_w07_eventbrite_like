@@ -1,4 +1,14 @@
-<%= render "layouts/errors", resource: @event %>
+  <% if @event.errors.any? %>
+    <div class="text-center alert alert-danger" role="alert">
+      <p>L'évènement n'a pu être crée pour la(les) raison(s) suivante(s)</p>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 
 <div class="container w-50">
 

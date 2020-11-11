@@ -1,58 +1,10 @@
-  <% if @user.errors.any? %>
-    <div class="text-center alert alert-danger" role="alert">
-      <p>Nous n'avons pas pu éditer les informations pour les raisons suivantes :</p>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render "layouts/errors", resource: @user %>
 
 
 <div class="container w-50">
 
-  <h2 class="my-5 text-center" > Mettez à jour vos infos personnelles ! ✍️</h2>
 
-
-
-  <%= form_for @user do |f| %>
-
-    <div class="form-group">
-      <label>Votre prénom</label>
-      <%= f.text_field :first_name, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <label>Votre nom</label>
-      <%= f.text_field :last_name, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <label>Votre description</label>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
-
-    <br>
-
-    <div class="form-group">
-      <label>Ajouter une photo</label>
-      <br>
-      <%= f.file_field :avatar, direct_upload: true, accept: "image/png,image/gif,image/jpeg" %>
-    </div>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Mettre à jour les infos</button>
-    </div>
-
-    <br><br>
-
-  <% end %>
-
-  <%= link_to "Supprimer mon compte", @user, class: "btn btn-outline-danger m-2", method: "DELETE", data: {confirm: "Êtes-vous sûr(e) ? :'("} %>
-  <br> <br>
-
-  <%= link_to  "Revenir à mon profil", @user, class: "btn btn-info" %>
+  <%= render 'form', user: @user %>
   
   
 </div>

@@ -1,30 +1,19 @@
-<div class="jumbotron" style="background-image: url(https://images.pexels.com/photos/433452/pexels-photo-433452.jpeg?cs=srgb&dl=pexels-pixabay-433452.jpg&fm=jpg);">
-  <div class="container">
-    <h1 class="display-3" style="font-family: 'Syne Mono'">Bonjour et bienvenue sur EventBrite-like !</h1>
-    <p>Sur ce site, vous pourrez organiser tout types d'évènements, des plus farfelus aux plus classiques, des plus intimistes aux plus grands nombre (enfin… Au moins en ligne, covid oblige)</p>
-    <%#<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>%>
-  </div>
-</div>
+<%= render 'welcome' %>
 
-<div class="container">
-  <div class="row">
-    <% @events.each do |event|%>
-      <div class="card mx-auto my-4 shadow" style="hover: on; width: 20rem;">
-        <div class="card-body">
-          <% if event.event_picture.attached? %>
-            <%= image_tag event.event_picture, alt: 'event picture', class: "border rounded-lg", style: "width: 100%; margin-bottom: 10px;" %>
-          <% end %>
-          <h5 class="card-title">#<%= event.id %> : <%= event.title %></h5>
-          <h6 class="card-subtitle mb-2" style="color: #e79d8a"><b>Date : <%= event.start_date %></b></h6>
-          <p class="card-text"><%= event.description[0..100] %><%= "…" if event.description.length > 101 %> </p>
-          <p><small class="text-muted"><%= event.event_admin.email %></small></p>
-          <br/>
-          <%= link_to "Voir les détails", event_path(event.id), class: "d-inline p-2 bg-primary text-white rounded" %></li>
-        </div>
-      </div>
-    <% end %>  
-  </div>
+<div class="container">  
 
-  <hr>
+  <% if @events.count > 0 %>
+
+    <h3>Liste des évènements</h3>
+    <div class="row">
+      <%= render partial: 'event', collection: @events.reverse %>
+    </div>
+
+  <% else %>
+
+      <h5 class="mb-1 text-center">Oh non ! 😱</h5>      
+      <p class="mb-1 text-center">Il n'y a pas encore d'évènements 😢</p>
+  
+  <% end %>
 
 </div> <!-- /container -->

@@ -1,0 +1,25 @@
+<div class="card mx-auto my-4 shadow" style="hover: on; width: 20rem;">
+  <div class="card-body">
+    <% if event.event_picture.attached? %>
+      <%= image_tag event.event_picture, alt: 'event picture', class: "border rounded-lg", style: "max-width: 100%; margin-bottom: 10px;" %>
+    <% end %>
+    <h5 class="card-title">#<%= event.id %> : <%= event.title %></h5>
+    <p class="card-text text-primary font-weight-bold mb-0"><%= event.start_date.strftime('%Y/%m/%d %H:%M') %></p>
+    <p class="card-text mb-2 text-primary mt-0">
+      <% if event.duration < 60 %>
+        <%= event.duration %>m
+      <% elsif event.duration % 60 == 0 %>
+        <%= (event.duration / 60) %>h
+      <% else %>
+        <%= (event.duration / 60) %>h <%= event.duration % 60 %>m
+      <% end %>
+    </p>
+    <p class="card-text"><%= event.description[0..100] %><%= "…" if event.description.length > 101 %> </p>
+    <p class="mb-2"><small class="text-muted">Crée par <%= event.event_admin.email %></small></p>
+    <p class="m-0"><small class="text-muted">Dernière modification le </p>
+    <p class="mt-0"> <%= event.updated_at %></small></p>
+    <br/>
+    <%= link_to "Voir les détails", event_path(event.id), class: "d-inline p-2 bg-primary text-white rounded" %></li>
+  </div>
+</div>
+

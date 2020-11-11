@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
+  <%= link_to "MW's Eventbrite Like", root_path, class: "navbar-brand" %>
+  <% if user_signed_in? && current_user.is_admin %>
+    <div class="nav-item">
+      <%= link_to "Admin ✔️", admin_root_path, class: "navbar-toggler btn btn-outline-dark my-auto mr-4" %>
+    </div>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+      <%= link_to "Créer un évènement", new_event_path, class: "btn btn-outline-dark ml-5" %>
+      </li>
+    </ul>
+
+    <% if user_signed_in? %>
+
+      <% if current_user.is_admin %>
+        <div class="nav-item">
+          <%= link_to "Admin ✔️", admin_root_path, class: "btn btn-outline-dark my-auto mr-4" %>
+        </div>
+      <% end %>
+
+      <div class="nav-item dropdown">
+        <a class="nav-link btn btn-secondary dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          connecté(e) : <b><%= current_user.first_name %></b>
+        </a>
+        
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "Mon profil", user_path(current_user.id), class: "nav-link btn btn-outline-info mx-2 my-2" %>
+          <%= link_to "Se déconnecter", destroy_user_session_path, class: "nav-link btn btn-outline-danger mx-2 my-2", method: "DELETE", data: {confirm: "Êtes-vous sûr ? 😢"} %>
+        </div>
+      </div>
+        
+    <% else %> 
+
+      <div class="nav-item dropdown">
+        <a class="nav-link btn btn-outline-info dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          S'inscrire / Se connecter
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "Se connecter", new_user_session_path, class: "nav-link btn btn-warning mx-2 my-2" %>
+    
+          <%= link_to "S'inscire", new_user_registration_path, class: "nav-link btn btn-outline-primary mx-2 my-2" %>
+        </div>
+      </div>
+    
+    <% end %>
+  </div>
+</nav>

@@ -36,7 +36,7 @@ class Event < ApplicationRecord
   end
  
   def multiple_of_five?
-    unless duration == nil || duration % 5 == 0
+    unless duration == nil || duration % 5 == 0 || start_date == nil
       errors.add(:discount, "doit être un multiple de 5.")
     end
   end
@@ -54,5 +54,15 @@ class Event < ApplicationRecord
     unless self.event_picture.attached?
       errors.add(:event_picture, "Vous devez ajouter une photo !")
     end
+  end
+
+  # by Vanak
+  def get_start
+    self.start_date.strftime('%Y-%m-%d %H:%M')
+  end
+
+  def end_event
+    date = self.start_date.to_datetime + (self.duration/1440.0)
+    date.strftime('%H:%M')
   end
 end
