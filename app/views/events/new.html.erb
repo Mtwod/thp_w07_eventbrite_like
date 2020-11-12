@@ -1,20 +1,11 @@
 <%= render "layouts/errors", resource: @event %>
 
 
-<div class="container">
+<div class="container w-50">
 
-  <% if @event.errors.any? %>
-    <div class="text-center alert alert-danger" role="alert">
-      <p>Nous n'avons pu créer d'évènement pour la/les raison(s) suivante(s) :</p>
-      <ul>
-        <% @event.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <h1 class="my-5 text-center">🤭 Voici le formulaire pour créer un nouvel évènement ! 🤭</h1>
+
+  <h1 class="my-5 text-center">Voici le formulaire pour créer un nouvel évènement ! 🤭</h1>
 
   <%= form_for @event, multipart: true do |f| %>
 

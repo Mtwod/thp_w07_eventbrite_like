@@ -21,7 +21,9 @@ class EventSubmissionsController < Admin::BaseController
   def event_submissions
     @events_to submit = []
     Events.all.each do |event|
-      @events << event if event.validated == false 
+      unless event.validated
+        @events << event
+      end 
     end
   end
 
